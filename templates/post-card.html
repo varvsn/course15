@@ -1,0 +1,31 @@
+<div class="col-md-6">
+<div class="panel panel-primary">
+    <div class="panel-heading">
+	<h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> {{ post.author }} <small class="pull-right label label-info"> at {{ post.date_created.strftime('%Y-%m-%d') }}</small></h3>
+    </div>
+    <div class="panel-body">
+	{{ post.mess_txt }}
+	<hr/>
+    <form action="{{ url_for('add_comment', post_id=post.id,) }}" method="post" class="form-inline">
+	<div class="form-group">
+	    <label class="sr-only" for="">Name</label>
+	    <input type="text" class="form-control input-sm" id="" placeholder="Your name" name="author">
+	</div>
+	<div class="form-group">
+	    <label class="sr-only" for="">Comment</label>
+	    <input type="text" class="form-control input-sm" id="" placeholder="Your comment" name="mess_txt">
+	</div>
+	<button type="submit" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> do it</button>
+    </form>
+    </div>
+    <div class="panel-footer">Comments <span class="glyphicon glyphicon-volume-up"></span></div>
+	<ul class="list-group">
+	{% for comm in post.comments %}
+            <li class="list-group-item">
+            {{ comm.author }} <small class="label label-default">at: {{ comm.date_created.strftime('%Y-%m-%d') }}</small> <br/>
+            Comment: <i> {{ comm.mess_txt }} </i><br/>
+            </li>
+        {% endfor %}
+	</ul>
+</div>
+</div>

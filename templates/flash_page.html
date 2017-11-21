@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title%}IMAGEBOARD{% endblock %}
+{% block content %}
+<div class="row">
+<div class="col-md-12">
+<div class="panel">
+    <div class="panel-body">
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+{% endwith %}
+	<a class="btn btn-info" href="{{ url_for('main') }}">Return to main page</a>
+    </div>
+</div>
+</div>
+</div>
+{% endblock content %}
